@@ -29,6 +29,15 @@
 
     <artifactId>microservice-start</artifactId>
     <name>Conference :: Start</name>
+
+    <properties>
+        <jar.extension></jar.extension>
+        <session.extension>-swarm</session.extension>
+        <session.argument>-Dswarm.http.port=9110</session.argument>
+        <schedule.argument1>--port</schedule.argument1>
+        <schedule.argument2>9120</schedule.argument2>
+        <speaker.extension>-exec</speaker.extension>
+    </properties>
     
     <profiles>
         <profile>
@@ -51,6 +60,17 @@
             </activation>
             <properties>
                 <command.extension></command.extension>
+            </properties>
+        </profile>
+        <profile>
+            <id>liberty</id>
+            <properties>
+                <jar.extension>.liberty</jar.extension>
+                <session.extension>${jar.extension}</session.extension>
+                <session.argument></session.argument>
+                <schedule.argument1></schedule.argument1>
+                <schedule.argument2></schedule.argument2>
+                <speaker.extension>${jar.extension}</speaker.extension>
             </properties>
         </profile>
         <profile>
@@ -88,7 +108,7 @@
                                     <workingDirectory>../microservice-speaker/microservice-speaker-web</workingDirectory>
                                     <arguments>
                                         <argument>-jar</argument>
-                                        <argument>target/microservice-speaker-web-exec.jar</argument>
+                                        <argument>target/microservice-speaker-web${speaker.extension}.jar</argument>
                                     </arguments>
                                 </configuration>
                             </execution>
@@ -104,8 +124,8 @@
                                     <workingDirectory>../microservice-session</workingDirectory>
                                     <arguments>
                                         <argument>-jar</argument>
-                                        <argument>target/microservice-session-swarm.jar</argument>
-                                        <argument>-Dswarm.http.port=9110</argument>
+                                        <argument>target/microservice-session${jar.extension}.jar</argument>
+                                        <argument>${session.argument}</argument>
                                     </arguments>
                                 </configuration>
                             </execution>
@@ -121,9 +141,9 @@
                                     <workingDirectory>../microservice-schedule</workingDirectory>
                                     <arguments>
                                         <argument>-jar</argument>
-                                        <argument>target/microservice-schedule.jar</argument>
-                                        <argument>--port</argument>
-                                        <argument>9120</argument>
+                                        <argument>target/microservice-schedule${jar.extension}.jar</argument>
+                                        <argument>${schedule.argument1}</argument>
+                                        <argument>${schedule.argument2}</argument>
                                     </arguments>
                                 </configuration>
                             </execution>
