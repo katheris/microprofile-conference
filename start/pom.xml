@@ -33,9 +33,9 @@
     <properties>
         <jar.extension></jar.extension>
         <session.extension>-swarm</session.extension>
-        <session.argument>-Dswarm.http.port=9110</session.argument>
+        <session.argument>-Dswarm.http.port=5050</session.argument>
         <schedule.argument1>--port</schedule.argument1>
-        <schedule.argument2>9120</schedule.argument2>
+        <schedule.argument2>6060</schedule.argument2>
         <speaker.extension>-exec</speaker.extension>
     </properties>
     
@@ -92,7 +92,7 @@
                                     <workingDirectory>../microservice-speaker/microservice-speaker-web</workingDirectory>
                                     <arguments>
                                         <argument>tomee:exec</argument>
-                                        <argument>-Dtomee-plugin.http=9100</argument>
+                                        <argument>-Dtomee-plugin.http=4040</argument>
                                     </arguments>
                                 </configuration>
                             </execution>
@@ -124,7 +124,7 @@
                                     <workingDirectory>../microservice-session</workingDirectory>
                                     <arguments>
                                         <argument>-jar</argument>
-                                        <argument>target/microservice-session${jar.extension}.jar</argument>
+                                        <argument>target/microservice-session${session.extension}.jar</argument>
                                         <argument>${session.argument}</argument>
                                     </arguments>
                                 </configuration>
