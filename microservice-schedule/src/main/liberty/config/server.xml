@@ -1,0 +1,9 @@
+<server description="Schedule server">
+    <featureManager>
+        <feature>microProfile-1.0</feature>
+    </featureManager>
+    
+    <httpEndpoint id="defaultHttpEndpoint" host="*" httpPort="6060" />
+    
+    <webApplication location="microservice-schedule.war" contextRoot="/microservice-schedule"/>
+</server>

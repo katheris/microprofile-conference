@@ -1,8 +1,9 @@
-import {Component, enableProdMode, OnInit} from "@angular/core";
+import {Component, enableProdMode, OnInit, ViewChild} from "@angular/core";
 import {Router} from "@angular/router";
 import {Schedule} from "./schedule";
 import {ScheduleService} from "./schedule.service";
-import {ScheduleModule} from 'primeng/primeng';
+import {ScheduleModule} from "primeng/primeng";
+import moment = require('moment');
 
 enableProdMode();
 
@@ -18,6 +19,9 @@ export class SchedulesComponent implements OnInit {
     selectedSchedule: Schedule;
     events: any[];
     header: any;
+
+    @ViewChild('schedule')
+    private pSchedule: ScheduleModule;
 
     constructor(private router: Router, private scheduleService: ScheduleService) {
     }
@@ -63,7 +67,28 @@ export class SchedulesComponent implements OnInit {
     }
 
     getSchedules(): void {
-        this.scheduleService.getSchedules().then(schedules => this.schedules = schedules).catch(SchedulesComponent.handleError);
+        this.scheduleService.getSchedules().then(schedules => {
+            this.setSchedules(schedules);
+        }).catch(SchedulesComponent.handleError);
+    }
+
+    setSchedules(schedules: Schedule[]): void {
+        this.schedules = schedules;
+        this.updateEventsFromSchedules(this.schedules)
+    }
+
+    updateEventsFromSchedules(schedules: Schedule[]): any[] {
+        var events = [];
+        // for (let s of schedules) {
+        //     var startTime = moment(s.date + "T" + s.startTime + ":00");
+        //     var endTime = moment(startTime).add(1, "hour");
+        //     events.push({
+        //         "title": s.venue,
+        //         "start": startTime,
+        //         "end": endTime
+        //     });
+        // }
+        return events;
     }
 
     onSelect(schedule: Schedule): void {

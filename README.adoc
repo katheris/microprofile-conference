@@ -91,6 +91,17 @@ Click on link:http://localhost:8080/microservice-schedule/schedule/1[http://loca
 
 To see a full set options run the jar with the --help command line option or see the link:https://payara.gitbooks.io/payara-server/content/documentation/payara-micro/payara-micro.html[Payara Micro Documentation] for a full list of options.
 
+==== Running on Liberty
+
+Alternatively you can run this service on liberty by doing:
+
+```
+cd microservice-schedule
+mvn -Pliberty package
+java -jar target/microservice-schedule.liberty.jar
+```
+
+
 === microservice-session
 
 Provided using link:http://wildfly-swarm.io[WildFly Swarm]
@@ -123,6 +134,16 @@ java -jar target/microservice-session-swarm.jar [-D<OPTION>]
 
 For a full set of configuration options please see link:https://wildfly-swarm.gitbooks.io/wildfly-swarm-users-guide/content/[the Wildfly Swarm Userguide]
 
+==== Running on Liberty
+
+Alternatively you can run this service on liberty by doing:
+
+```
+cd microservice-session
+mvn -Pliberty package
+java -jar target/microservice-session.liberty.jar
+```
+
 === microservice-speaker
 Provided using link:http://tomee.apache.org/[Apache TomEE 7.x]
 
@@ -138,6 +159,17 @@ mvn clean package tomee:exec -DskipTests
 java -DadditionalSystemProperties="-Dport.http=9191 -Dport.ajp=9292 -Dport.shutdown=9393" -jar target/microservice-speaker-web-exec.jar
 ----
 
+==== Running on Liberty
+
+Alternatively you can run this service on liberty by doing:
+
+```
+cd microservice-speaker
+mvn -Pliberty package
+java -jar microservice-speaker-web/target/microservice-speaker.liberty.jar
+```
+
+
 === microservice-vote
 Provided using link:https://developer.ibm.com/wasdev/[WebSphere Liberty]
 
@@ -148,10 +180,10 @@ mvn clean install
 java -jar target/microprofile-vote.jar
 ```
 
-Access the app at link:http://localhost:9130/vote[http://localhost:9130/vote].
+Access the app at link:http://localhost:7070/vote[http://localhost:7070/vote].
 
 *Port Bindings*
-By default the microservice will start on port 9130. To set it to a different port use the following Maven properties:
+By default the microservice will start on port 7070. To set it to a different port use the following Maven properties:
 ```
 -DtestServerHttpPort=9080 -DtestServerHttpsPort=9443
 ```
